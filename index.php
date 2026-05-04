@@ -151,6 +151,8 @@
         /* ─── MARQUEE ──────────────────────────────────────── */
         .marquee-wrap {
             overflow: hidden;
+            overflow-x: hidden; /* anti-scroll horizontal sur mobile */
+            width: 100%;
             border-top: 1px solid #f1f1f1;
             border-bottom: 1px solid #f1f1f1;
             background: #fafafa;
@@ -258,6 +260,12 @@
 
         /* ─── FOOTER ─────────────────────────────────────────── */
         .footer-hr { height: 1px; background: #f3f4f6; }
+
+        /* ─── RESPONSIVE : masque curseur sur tactile ────────── */
+        @media (hover: none), (pointer: coarse) {
+            html { cursor: auto !important; }
+            #c-dot, #c-ring, .c-trail { display: none !important; }
+        }
     </style>
 </head>
 
@@ -272,7 +280,7 @@
     <div class="c-trail" id="t3" style="width:6px;height:6px;opacity:.45;"></div>
 
     <!-- ── NAV ─────────────────────────────────────────────── -->
-    <nav class="max-w-7xl mx-auto px-8 py-7 flex justify-between items-center fu d1">
+    <nav class="max-w-7xl mx-auto px-6 md:px-8 py-7 flex justify-between items-center fu d1">
         <div class="flex items-center gap-4">
             <span class="font-black text-xl tracking-tight text-black">
                 AK<span style="color:#E11D48;">.</span>AGRE
@@ -289,20 +297,20 @@
     </nav>
 
     <!-- ── HERO ─────────────────────────────────────────────── -->
-    <header class="max-w-7xl mx-auto px-8 pt-14 pb-20">
+    <header class="max-w-7xl mx-auto px-6 md:px-8 pt-14 pb-20">
 
         <p class="text-[10px] font-bold tracking-[.3em] uppercase mb-6 fu d2" style="color:#9ca3af;">
             Angers &nbsp;|&nbsp; Toulouse
         </p>
 
         <h1 class="font-black leading-[.9] tracking-tight text-black mb-10 fu d3"
-            style="font-size: clamp(3rem, 9vw, 7.5rem);">
+            style="font-size: clamp(2.4rem, 8vw, 7.5rem);">
             <span class="block">Ange-Kevin</span>
             <span class="block" style="color:#E11D48;">Agre</span>
         </h1>
 
         <div class="max-w-3xl mb-12 fu d4">
-            <p class="text-base md:text-lg leading-relaxed font-light" style="color:#374151;">
+            <p class="text-sm md:text-base lg:text-lg leading-relaxed font-light" style="color:#374151;">
                 <strong class="font-semibold text-black">ANGE-KEVIN AGRE</strong> est un
                 <strong style="font-weight:600;color:#E11D48;">entrepreneur</strong>
                 et
@@ -346,7 +354,7 @@
     </div>
 
     <!-- ── STATS ─────────────────────────────────────────────── -->
-    <div class="max-w-7xl mx-auto px-8 py-16 fu d6">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 py-16 fu d6">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-gray-100">
             <div class="px-8 first:pl-0">
                 <div class="stat-n">3<span>+</span></div>
@@ -368,10 +376,10 @@
     </div>
 
     <!-- Separator -->
-    <div class="max-w-7xl mx-auto px-8"><div class="hr"></div></div>
+    <div class="max-w-7xl mx-auto px-6 md:px-8"><div class="hr"></div></div>
 
     <!-- ── PROJECTS ──────────────────────────────────────────── -->
-    <main class="max-w-7xl mx-auto px-8 py-20">
+    <main class="max-w-7xl mx-auto px-6 md:px-8 py-20">
 
         <!-- Section label -->
         <div class="flex items-center justify-between mb-12 fu d6">
@@ -383,7 +391,7 @@
             </div>
         </div>
 
-        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
             <!-- ─ Card 1 : Custom Wear ─────────────────────── -->
             <div class="p-card c-hover fu d6">
@@ -528,7 +536,7 @@
     </main>
 
     <!-- ── FOOTER ────────────────────────────────────────────── -->
-    <footer class="max-w-7xl mx-auto px-8 pb-12">
+    <footer class="max-w-7xl mx-auto px-6 md:px-8 pb-12">
         <div class="footer-hr mb-10"></div>
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
             <span class="font-black text-xl tracking-tight text-black">
@@ -548,53 +556,57 @@
 
     <!-- ── CURSOR SCRIPT ─────────────────────────────────────── -->
     <script>
-        const dot  = document.getElementById('c-dot');
-        const ring = document.getElementById('c-ring');
-        const t1   = document.getElementById('t1');
-        const t2   = document.getElementById('t2');
-        const t3   = document.getElementById('t3');
+        /* Désactivation complète sur écrans tactiles (mobile/tablette) */
+        const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
-        let mx = 0, my = 0;
-        let rx = 0, ry = 0;
-        // Trail positions with more lag each step
-        let tx1 = 0, ty1 = 0;
-        let tx2 = 0, ty2 = 0;
-        let tx3 = 0, ty3 = 0;
+        if (!isTouch) {
+            const dot  = document.getElementById('c-dot');
+            const ring = document.getElementById('c-ring');
+            const t1   = document.getElementById('t1');
+            const t2   = document.getElementById('t2');
+            const t3   = document.getElementById('t3');
 
-        const easeRing   = 0.10;
-        const easeTrail1 = 0.07;
-        const easeTrail2 = 0.05;
-        const easeTrail3 = 0.035;
+            let mx = 0, my = 0;
+            let rx = 0, ry = 0;
+            let tx1 = 0, ty1 = 0;
+            let tx2 = 0, ty2 = 0;
+            let tx3 = 0, ty3 = 0;
 
-        document.addEventListener('mousemove', e => {
-            mx = e.clientX; my = e.clientY;
-            dot.style.left = mx + 'px';
-            dot.style.top  = my + 'px';
-        });
+            const easeRing   = 0.10;
+            const easeTrail1 = 0.07;
+            const easeTrail2 = 0.05;
+            const easeTrail3 = 0.035;
 
-        (function loop() {
-            rx  += (mx - rx)   * easeRing;
-            ry  += (my - ry)   * easeRing;
-            tx1 += (mx - tx1)  * easeTrail1;
-            ty1 += (my - ty1)  * easeTrail1;
-            tx2 += (mx - tx2)  * easeTrail2;
-            ty2 += (my - ty2)  * easeTrail2;
-            tx3 += (mx - tx3)  * easeTrail3;
-            ty3 += (my - ty3)  * easeTrail3;
+            document.addEventListener('mousemove', e => {
+                mx = e.clientX; my = e.clientY;
+                dot.style.left = mx + 'px';
+                dot.style.top  = my + 'px';
+            });
 
-            ring.style.left = rx + 'px';
-            ring.style.top  = ry + 'px';
-            t1.style.left = tx1 + 'px'; t1.style.top = ty1 + 'px';
-            t2.style.left = tx2 + 'px'; t2.style.top = ty2 + 'px';
-            t3.style.left = tx3 + 'px'; t3.style.top = ty3 + 'px';
+            (function loop() {
+                rx  += (mx - rx)   * easeRing;
+                ry  += (my - ry)   * easeRing;
+                tx1 += (mx - tx1)  * easeTrail1;
+                ty1 += (my - ty1)  * easeTrail1;
+                tx2 += (mx - tx2)  * easeTrail2;
+                ty2 += (my - ty2)  * easeTrail2;
+                tx3 += (mx - tx3)  * easeTrail3;
+                ty3 += (my - ty3)  * easeTrail3;
 
-            requestAnimationFrame(loop);
-        })();
+                ring.style.left = rx + 'px';
+                ring.style.top  = ry + 'px';
+                t1.style.left = tx1 + 'px'; t1.style.top = ty1 + 'px';
+                t2.style.left = tx2 + 'px'; t2.style.top = ty2 + 'px';
+                t3.style.left = tx3 + 'px'; t3.style.top = ty3 + 'px';
 
-        document.querySelectorAll('.c-hover, a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
-        });
+                requestAnimationFrame(loop);
+            })();
+
+            document.querySelectorAll('.c-hover, a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('is-hovering'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('is-hovering'));
+            });
+        }
     </script>
 
 </body>

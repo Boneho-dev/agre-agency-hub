@@ -771,40 +771,39 @@
                 </a>
             </div>
 
-            <!-- ─ Card 5 : En cours ───────────────────────────── -->
-            <div class="p-card c-hover fu d9" style="border-style: dashed; border-color: #e5e7eb;">
+            <!-- ─ Card 5 : Chatbot IA ─────────────────────────── -->
+            <div class="p-card c-hover fu d9">
                 <div class="flex items-start justify-between mb-8">
-                    <div class="p-icon" style="background:#f9fafb; border:1px dashed #d1d5db;">
-                        <svg class="w-6 h-6" style="color:#9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-icon" style="background:#fef2f2; border:1px solid #fecaca;">
+                        <svg class="w-6 h-6" style="color:#E11D48;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                         </svg>
                     </div>
                     <span class="text-[9px] font-bold tracking-[.2em] uppercase" style="color:#d1d5db;">05 / 05</span>
                 </div>
 
-                <div class="mb-4">
-                    <div class="badge-wip mb-4">
-                        <span class="badge-wip-dot"></span>
-                        Développement
-                    </div>
-                    <h3 class="text-xl font-bold text-black mb-3 tracking-tight">Projet 5 — Développement</h3>
-                </div>
-
-                <p class="text-sm leading-relaxed mb-6 flex-grow font-light" style="color:#9ca3af;">
-                    Agre Agency conçoit un nouveau SaaS minimaliste — conception en cours, lancement imminent.
+                <h3 class="text-xl font-bold text-black mb-3 tracking-tight">Chatbot IA — Agre Agency</h3>
+                <p class="text-sm leading-relaxed mb-6 flex-grow font-light" style="color:#6b7280;">
+                    Assistant IA multilingue (FR/EN) intégrant Claude API. Navigation par cartes interactives — Services, Projets, Tarifs, À propos. Design premium, animations fluides, backend PHP sécurisé.
                 </p>
 
                 <div class="flex flex-wrap gap-2 mb-7">
-                    <span class="tech-tag">En cours</span>
-                    <span class="tech-tag">2026</span>
+                    <span class="tech-tag">Claude API</span>
+                    <span class="tech-tag">Multilingue</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">IA</span>
                 </div>
 
                 <div class="hr mb-6"></div>
 
-                <span class="text-[9.5px] font-bold tracking-[.16em] uppercase" style="color:#d1d5db;">
-                    Bientôt disponible
-                </span>
+                <a href="https://agre.page.gd/chatbot/frontend/index.html" class="c-link c-hover" style="color:#E11D48;" target="_blank" rel="noopener">
+                    Accéder au chatbot
+                    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
             </div>
 
         </div>
